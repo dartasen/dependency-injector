@@ -142,8 +142,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/me/dartasen/dependencyinjector/DependencyMain.java</url>
-          <line>14</line>
-          <option name="timeStamp" value="6" />
+          <line>13</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

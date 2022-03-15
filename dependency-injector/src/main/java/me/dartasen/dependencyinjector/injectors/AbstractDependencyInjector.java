@@ -1,12 +1,9 @@
 package me.dartasen.dependencyinjector.injectors;
 
+import me.dartasen.dependencyinjector.Injector;
+
 public abstract class AbstractDependencyInjector {
 
-    protected final Class<?> type;
+    public abstract void inject(Class<?> type, Object target, Injector injector);
 
-    public AbstractDependencyInjector(Class<?> type) {
-        this.type = type;
-    }
-
-    public abstract void inject(Object target);
 }

@@ -1,5 +1,6 @@
 package me.dartasen.dependencyinjector.injectors;
 
+import me.dartasen.dependencyinjector.Injector;
 import me.dartasen.dependencyinjector.models.annotations.Autowired;
 import me.dartasen.dependencyinjector.models.exceptions.BeanCreationException;
 
@@ -7,16 +8,16 @@ import java.lang.reflect.Method;
 
 public class AnnotatedSetterInjector extends AbstractDependencyInjector {
 
-    public AnnotatedSetterInjector(Class<?> type) {
-        super(type);
-    }
+    @Override
+    public void inject(Class<?> type, Object target, Injector injector) {
+        if (type == null) throw new IllegalArgumentException("Type cannot be null");
+        if (target == null) throw new IllegalArgumentException("Target cannot be null");
+        if (injector == null) throw new IllegalArgumentException("Injector cannot be null");
 
-    public void inject(Object target) {
-        for (Method method : type.getMethods()) {
+        for (Method method : type.getDeclaredMethods()) {
             if (method.isAnnotationPresent(Autowired.class)) {
                 Class<?> requiredType = getInjectableType(method);
-                // TODO : Get inject type
-                setValue(target, method, null);
+                setValue(target, method, injector.get(requiredType));
             }
         }
     }

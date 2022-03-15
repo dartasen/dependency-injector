@@ -1,5 +1,6 @@
 package me.dartasen.dependencyinjector.injectors;
 
+import me.dartasen.dependencyinjector.Injector;
 import me.dartasen.dependencyinjector.models.annotations.Autowired;
 import me.dartasen.dependencyinjector.models.exceptions.BeanCreationException;
 
@@ -7,16 +8,15 @@ import java.lang.reflect.Field;
 
 public class AnnotatedFieldInjector extends AbstractDependencyInjector {
 
-    public AnnotatedFieldInjector(Class<?> type) {
-        super(type);
-    }
-
     @Override
-    public void inject(Object target) {
+    public void inject(Class<?> type, Object target, Injector injector) {
+        if (type == null) throw new IllegalArgumentException("Type cannot be null");
+        if (target == null) throw new IllegalArgumentException("Target cannot be null");
+        if (injector == null) throw new IllegalArgumentException("Injector cannot be null");
+
         for (Field field : type.getDeclaredFields()) {
             if (field.isAnnotationPresent(Autowired.class)) {
-                // TODO : Get inject type
-                setPropertyValue(target, field, null);
+                setPropertyValue(target, field, injector.get(field.getType()));
             }
         }
     }

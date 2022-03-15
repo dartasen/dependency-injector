@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 /**
  * Annotation to notify to the framework that we need to inject something
  */
-@Target({ElementType.CONSTRUCTOR, ElementType.FIELD})
+@Target({ElementType.CONSTRUCTOR, ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Autowired { }

@@ -11,13 +11,21 @@ import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.lang.reflect.Modifier;
 import java.rmi.Remote;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class Container implements IContainer {
+
+    // We don't want to put marker interfaces in our dependency map
+    public static final List<Class<?>> MARKER_INTERFACES = Arrays.asList(
+            Serializable.class,
+            Cloneable.class,
+            Remote.class,
+            EventListener.class
+    );
 
     // base class => implementation class
     @Getter
@@ -40,7 +48,8 @@ public class Container implements IContainer {
 
         if (options.contains(RegisterOptions.AS_EXTENDED_TYPE)) {
             Class<?> superClass = type.getSuperclass();
-            if (superClass != null) {
+
+            if (superClass != null && !superClass.equals(Object.class)) {
                 registerType(superClass, type);
             }
         }
@@ -48,14 +57,15 @@ public class Container implements IContainer {
         if (options.contains(RegisterOptions.AS_FIRST_INTERFACE)) {
             Class<?>[] interfaces = type.getInterfaces();
 
-            if (interfaces.length > 0) {
+            if (interfaces.length > 0 && !MARKER_INTERFACES.contains(interfaces[0])) {
                 registerType(interfaces[0], type);
             }
         }
 
         if (options.contains(RegisterOptions.AS_IMPLEMENTED_INTERFACES)) {
-            Class<?>[] interfaces = type.getInterfaces();
-
+            var interfaces = Arrays.stream(type.getInterfaces())
+                                                        .filter(inter -> !MARKER_INTERFACES.contains(inter))
+                                                        .collect(Collectors.toUnmodifiableSet());
             for (Class<?> interfacez : interfaces) {
                 registerType(interfacez, type);
             }
@@ -72,7 +82,8 @@ public class Container implements IContainer {
             throw new InvalidHierarchyException("Subclass type cannot be abstract to register a mapping");
         }
 
-        dependencyMap.put(baseClass, subClass.asSubclass(baseClass));
+        // TODO: Workaround for multiple interfaces dependencies
+        dependencyMap.putIfAbsent(baseClass, subClass.asSubclass(baseClass));
     }
 
     public Class<?> getClassForContract(Class<?> contract) {
@@ -92,18 +103,11 @@ public class Container implements IContainer {
         }
 
         log.info("Starting to scan {}", packageName);
-
         Reflections reflections = new Reflections(packageName, Scanners.values());
         Set<Class<?>> clazzes = reflections.getTypesAnnotatedWith(Component.class);
 
         for (Class<?> clazz : clazzes) {
-            Class<?>[] interfaces = clazz.getInterfaces();
-
-            for (Class<?> clazzInterface : interfaces) {
-                registerType(clazzInterface, clazz);
-            }
-
-            registerType(clazz);
+            registerType(clazz, RegisterOptions.DEFAULT);
         }
     }
 

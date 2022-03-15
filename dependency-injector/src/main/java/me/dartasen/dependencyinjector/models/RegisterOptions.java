@@ -12,6 +12,5 @@ public enum RegisterOptions {
     AS_FIRST_INTERFACE,
     AS_IMPLEMENTED_INTERFACES;
 
-    public static final EnumSet<RegisterOptions> DEFAULT = EnumSet.of(AS_SELF, AS_EXTENDED_TYPE, AS_FIRST_INTERFACE);
-    public static final EnumSet<RegisterOptions> ALL = EnumSet.of(AS_SELF, AS_EXTENDED_TYPE, AS_IMPLEMENTED_INTERFACES);
+    public static final EnumSet<RegisterOptions> DEFAULT = EnumSet.of(AS_SELF, AS_EXTENDED_TYPE, AS_IMPLEMENTED_INTERFACES);
 }

@@ -1,4 +1,4 @@
-package me.dartasen.dependencyinjector.injectors.models;
+package me.dartasen.dependencyinjector.test.injectors.models;
 
 import me.dartasen.dependencyinjector.models.LifeCycle;
 import me.dartasen.dependencyinjector.models.annotations.Component;

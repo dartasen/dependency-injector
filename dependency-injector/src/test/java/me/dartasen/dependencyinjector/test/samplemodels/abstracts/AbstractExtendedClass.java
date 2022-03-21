@@ -1,4 +1,4 @@
-package me.dartasen.dependencyinjector.samplemodels.abstracts;
+package me.dartasen.dependencyinjector.test.samplemodels.abstracts;
 
 public abstract class AbstractExtendedClass extends AbstractEmptyClass{
 }

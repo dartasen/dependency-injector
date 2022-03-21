@@ -17,7 +17,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class Container implements IContainer {
+public final class Container implements IContainer {
 
     // We don't want to put marker interfaces in our dependency map
     public static final List<Class<?>> MARKER_INTERFACES = Arrays.asList(
@@ -64,8 +64,9 @@ public class Container implements IContainer {
 
         if (options.contains(RegisterOptions.AS_IMPLEMENTED_INTERFACES)) {
             var interfaces = Arrays.stream(type.getInterfaces())
-                                                        .filter(inter -> !MARKER_INTERFACES.contains(inter))
-                                                        .collect(Collectors.toUnmodifiableSet());
+                    .filter(inter -> !MARKER_INTERFACES.contains(inter))
+                    .collect(Collectors.toUnmodifiableSet());
+            
             for (Class<?> interfacez : interfaces) {
                 registerType(interfacez, type);
             }
@@ -74,20 +75,22 @@ public class Container implements IContainer {
 
     public void registerType(Class<?> baseClass, Class<?> subClass) {
         if (baseClass == null || subClass == null) throw new IllegalArgumentException("Unable to find null type");
-        if (!baseClass.isAssignableFrom(subClass)) throw new InvalidHierarchyException("Subclass is not assignable from baseclass");
-        if (!subClass.isAnnotationPresent(Component.class)) throw new InvalidBeanException("Components annotations are missing");
+        if (!baseClass.isAssignableFrom(subClass))
+            throw new InvalidHierarchyException("Subclass is not assignable from baseclass");
+        if (!subClass.isAnnotationPresent(Component.class))
+            throw new InvalidBeanException("Components annotations are missing");
 
         // If we don't want to allow abstract types as implementation
         if (Modifier.isAbstract(subClass.getModifiers()) || subClass.isInterface()) {
             throw new InvalidHierarchyException("Subclass type cannot be abstract to register a mapping");
         }
 
-        // TODO: Workaround for multiple interfaces dependencies
+        // TODO: Find a workaround for multiple interfaces dependencies
         dependencyMap.putIfAbsent(baseClass, subClass.asSubclass(baseClass));
     }
 
     public Class<?> getClassForContract(Class<?> contract) {
-        return dependencyMap.getOrDefault(contract, contract.isInterface() ? null : contract);
+        return dependencyMap.get(contract);
     }
 
     public void scan(Class<?> mainClass) {
@@ -104,9 +107,9 @@ public class Container implements IContainer {
 
         log.info("Starting to scan {}", packageName);
         Reflections reflections = new Reflections(packageName, Scanners.values());
-        Set<Class<?>> clazzes = reflections.getTypesAnnotatedWith(Component.class);
+        Set<Class<?>> classes = reflections.getTypesAnnotatedWith(Component.class);
 
-        for (Class<?> clazz : clazzes) {
+        for (Class<?> clazz : classes) {
             registerType(clazz, RegisterOptions.DEFAULT);
         }
     }

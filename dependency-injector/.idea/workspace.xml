@@ -37,13 +37,13 @@
       <recent name="me.dartasen.dependencyinjector.injectors" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DependencyMain">
+  <component name="RunManager" selected="JUnit.InjectorTest.getTest">
     <configuration name="DependencyMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="me.dartasen.dependencyinjector.DependencyMain" />
       <module name="dependency-injector" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="me.dartasen.dependencyinjector.*" />
+          <option name="PATTERN" value="me.dartasen.dependencyinjector.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -51,63 +51,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AnnotatedFieldInjectorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ContainerTest.testRegisterWithSpecificOptions" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dependency-injector" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="me.dartasen.dependencyinjector.injectors.*" />
+          <option name="PATTERN" value="me.dartasen.dependencyinjector.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="me.dartasen.dependencyinjector.injectors" />
-      <option name="MAIN_CLASS_NAME" value="me.dartasen.dependencyinjector.injectors.AnnotatedFieldInjectorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AnnotatedSetterInjectorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dependency-injector" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="me.dartasen.dependencyinjector.injectors.models.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="me.dartasen.dependencyinjector.injectors" />
-      <option name="MAIN_CLASS_NAME" value="me.dartasen.dependencyinjector.injectors.AnnotatedSetterInjectorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AnnotatedSetterInjectorTest.injectionCheck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dependency-injector" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="me.dartasen.dependencyinjector.injectors.models.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="me.dartasen.dependencyinjector.injectors" />
-      <option name="MAIN_CLASS_NAME" value="me.dartasen.dependencyinjector.injectors.AnnotatedSetterInjectorTest" />
-      <option name="METHOD_NAME" value="injectionCheck" />
+      <option name="PACKAGE_NAME" value="me.dartasen.dependencyinjector.test" />
+      <option name="MAIN_CLASS_NAME" value="me.dartasen.dependencyinjector.test.ContainerTest" />
+      <option name="METHOD_NAME" value="testRegisterWithSpecificOptions" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ContainerTest.registerSanityCheck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ContainerTest.testScan" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dependency-injector" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="me.dartasen.dependencyinjector.*" />
+          <option name="PATTERN" value="me.dartasen.dependencyinjector.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="me.dartasen.dependencyinjector" />
-      <option name="MAIN_CLASS_NAME" value="me.dartasen.dependencyinjector.ContainerTest" />
-      <option name="METHOD_NAME" value="registerSanityCheck" />
+      <option name="PACKAGE_NAME" value="me.dartasen.dependencyinjector.test" />
+      <option name="MAIN_CLASS_NAME" value="me.dartasen.dependencyinjector.test.ContainerTest" />
+      <option name="METHOD_NAME" value="testScan" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InjectorTest.getTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dependency-injector" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.dartasen.dependencyinjector.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="me.dartasen.dependencyinjector.test" />
+      <option name="MAIN_CLASS_NAME" value="me.dartasen.dependencyinjector.test.InjectorTest" />
+      <option name="METHOD_NAME" value="getTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InjectorTest.sanityCheck" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dependency-injector" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="me.dartasen.dependencyinjector.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="me.dartasen.dependencyinjector.test" />
+      <option name="MAIN_CLASS_NAME" value="me.dartasen.dependencyinjector.test.InjectorTest" />
+      <option name="METHOD_NAME" value="sanityCheck" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -115,11 +117,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.InjectorTest.getTest" />
+        <item itemvalue="JUnit.InjectorTest.sanityCheck" />
+        <item itemvalue="JUnit.ContainerTest.testScan" />
+        <item itemvalue="JUnit.ContainerTest.testRegisterWithSpecificOptions" />
         <item itemvalue="Application.DependencyMain" />
-        <item itemvalue="JUnit.ContainerTest.registerSanityCheck" />
-        <item itemvalue="JUnit.AnnotatedFieldInjectorTest" />
-        <item itemvalue="JUnit.AnnotatedSetterInjectorTest.injectionCheck" />
-        <item itemvalue="JUnit.AnnotatedSetterInjectorTest" />
       </list>
     </recent_temporary>
   </component>
@@ -141,9 +143,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/me/dartasen/dependencyinjector/DependencyMain.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/src/test/java/me/dartasen/dependencyinjector/test/InjectorTest.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
